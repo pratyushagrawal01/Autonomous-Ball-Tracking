@@ -1,0 +1,442 @@
+<?xml version="1.0" ?>
+<!-- Define the robot model and name it "four_wheeled_robot" -->
+<robot name="four_wheeled_robot">
+
+    <!-- Define the base link of the robot -->
+    <link name="base">
+        <!-- Visual properties of the base link -->
+        <visual>
+            <geometry>
+                <!-- The base is represented as a box with the specified dimensions -->
+                <box size="0.75 0.4 0.1"/>
+            </geometry>
+            <material name="gray">
+                <!-- Set the color of the base to gray -->
+                <color rgba=".2 .2 .2 1" />
+            </material>
+        </visual>
+        <!-- Inertial properties of the base link -->
+        <inertial>
+            <!-- Mass of the base link -->
+            <mass value="1" />
+            <!-- Inertia tensor of the base link -->
+            <inertia ixx="0.01" ixy="0.0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+
+        <!-- Collision properties of the base link -->
+        <collision>
+            <geometry>
+                <!-- The collision shape is the same as the visual shape -->
+                <box size="0.75 0.4 0.1"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Define the front right wheel link of the robot -->
+    <link name="wheel_front_right_link">
+        <!-- Inertial properties of the front right wheel -->
+        <inertial>
+            <!-- Mass of the front right wheel -->
+            <mass value="2" />
+            <!-- Inertia tensor of the front right wheel -->
+            <inertia ixx="0.01" ixy="0.0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+        <!-- Visual properties of the front right wheel -->
+        <visual>
+            <geometry>
+                <!-- The front right wheel is represented as a cylinder with the specified radius and length -->
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <material name="white">
+                <!-- Set the color of the front right wheel to white -->
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <!-- Collision properties of the front right wheel -->
+        <collision>
+            <geometry>
+                <!-- The collision shape is the same as the visual shape -->
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <contact_coefficients mu="1" kp="1e+13" kd="1.0"/>
+        </collision>
+    </link>
+
+    <!-- Define the joint for the front right wheel -->
+    <joint name="wheel_front_right_joint" type="continuous">
+        <!-- Origin of the joint in relation to the parent link (base) -->
+        <origin xyz="0.2 0.25 0.0" rpy="1.57 0.0 0.0"/>
+        <!-- The parent link of this joint -->
+        <parent link="base"/>
+        <!-- The child link of this joint -->
+        <child link="wheel_front_right_link"/>
+        <!-- The axis of rotation for the joint -->
+        <axis xyz="0.0 0.0 1.0"/>
+    </joint>
+
+    <!-- Define the front left wheel link of the robot -->
+    <link name="wheel_front_left_link">
+        <!-- Inertial properties of the front left wheel -->
+        <inertial>
+            <!-- Mass of the front left wheel -->
+            <mass value="2" />
+            <!-- Inertia tensor of the front left wheel -->
+            <inertia ixx="0.01" ixy="0.0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+        <!-- Visual properties of the front left wheel -->
+        <visual>
+            <geometry>
+                <!-- The front left wheel is represented as a cylinder with the specified radius and length -->
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <material name="white">
+                <!-- Set the color of the front left wheel to white -->
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <!-- Collision properties of the front left wheel -->
+        <collision>
+            <geometry>
+                <!-- The collision shape is the same as the visual shape -->
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <contact_coefficients mu="1" kp="1e+13" kd="1.0"/>
+        </collision>
+    </link>
+
+    <!-- Define the joint for the front left wheel -->
+    <joint name="wheel_front_left_joint" type="continuous">
+        <!-- Origin of the joint in relation to the parent link (base) -->
+        <origin xyz="0.2 -0.25 0.0" rpy="1.57 0.0 0.0"/>
+        <!-- The parent link of this joint -->
+        <parent link="base"/>
+        <!-- The child link of this joint -->
+        <child link="wheel_front_left_link"/>
+        <!-- The axis of rotation for the joint -->
+        <axis xyz="0.0 0.0 1.0"/>
+    </joint>
+
+    <!-- Define the rear right wheel link of the robot -->
+    <link name="wheel_rear_right_link">
+        <!-- Inertial properties of the rear right wheel -->
+        <inertial>
+            <!-- Mass of the rear right wheel -->
+            <mass value="2" />
+            <!-- Inertia tensor of the rear right wheel -->
+            <inertia ixx="0.01" ixy="0.0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+        <!-- Visual properties of the rear right wheel -->
+        <visual>
+            <geometry>
+                <!-- The rear right wheel is represented as a cylinder with the specified radius and length -->
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <material name="white">
+                <!-- Set the color of the rear right wheel to white -->
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <!-- Collision properties of the rear right wheel -->
+        <collision>
+            <geometry>
+                <!-- The collision shape is the same as the visual shape -->
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <contact_coefficients mu="1" kp="1e+13" kd="1.0"/>
+        </collision>
+    </link>
+
+    <!-- Define the joint for the rear right wheel -->
+    <joint name="wheel_rear_right_joint" type="continuous">
+        <!-- Origin of the joint in relation to the parent link (base) -->
+        <origin xyz="-0.2 0.25 0.0" rpy="1.57 0.0 0.0"/>
+        <!-- The parent link of this joint -->
+        <parent link="base"/>
+        <!-- The child link of this joint -->
+        <child link="wheel_rear_right_link"/>
+        <!-- The axis of rotation for the joint -->
+        <axis xyz="0.0 0.0 1.0"/>
+    </joint>
+
+    <!-- Define the rear left wheel link of the robot -->
+    <link name="wheel_rear_left_link">
+        <!-- Inertial properties of the rear left wheel -->
+        <inertial>
+            <!-- Mass of the rear left wheel -->
+            <mass value="2" />
+            <!-- Inertia tensor of the rear left wheel -->
+            <inertia ixx="0.01" ixy="0.0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+        <!-- Visual properties of the rear left wheel -->
+        <visual>
+            <geometry>
+                <!-- The rear left wheel is represented as a cylinder with the specified radius and length -->
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <material name="white">
+                <!-- Set the color of the rear left wheel to white -->
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <!-- Collision properties of the rear left wheel -->
+        <collision>
+            <geometry>
+                <!-- The collision shape is the same as the visual shape -->
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <contact_coefficients mu="1" kp="1e+13" kd="1.0"/>
+        </collision>
+    </link>
+
+    <!-- Define the joint for the rear left wheel -->
+    <joint name="wheel_rear_left_joint" type="continuous">
+        <!-- Origin of the joint in relation to the parent link (base) -->
+        <origin xyz="-0.2 -0.25 0.0" rpy="1.57 0.0 0.0"/>
+        <!-- The parent link of this joint -->
+        <parent link="base"/>
+        <!-- The child link of this joint -->
+        <child link="wheel_rear_left_link"/>
+        <!-- The axis for rotation for the body -->
+        <axis xyz="0.0 0.0 1.0"/>
+    </joint>
+     <!-- Define the camera link of the robot -->
+     <link name="camera">
+        <!-- Inertial properties of the camera -->
+        <inertial>
+            <!-- Mass of the camera -->
+            <mass value="0.1" />
+            <!-- Inertia tensor of the camera -->
+            <inertia ixx="0.01" ixy="0.0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+        <!-- Visual properties of the camera -->
+        <visual>
+            <geometry>
+                <!-- The camera is represented as a box with the specified dimensions -->
+                <box size="0.1 0.1 0.05"/>
+            </geometry>
+            <material name="white">
+                <!-- Set the color of the camera to white -->
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <!-- Collision properties of the camera -->
+        <collision>
+            <geometry>
+                <!-- The collision shape is the same as the visual shape -->
+                <box size="0.1 0.1 0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Define the joint for the camera -->
+    <joint name="camera_joint" type="fixed">
+        <!-- Origin of the joint in relation to the parent link (base) -->
+        <origin xyz="-0.35 0 0.01" rpy="0 0.0 3.14"/>
+        <!-- The parent link of this joint -->
+        <parent link="base"/>
+        <!-- The child link of this joint -->
+        <child link="camera"/>
+        <!-- The axis of rotation for the joint -->
+        <axis xyz="0.0 0.0 1.0"/>
+    </joint>
+
+    <!-- Define the lidar link of the robot -->
+    <link name="lidar">
+        <!-- Inertial properties of the lidar -->
+        <inertial>
+            <!-- Mass of the lidar -->
+            <mass value="0.5" />
+            <!-- Inertia tensor of the lidar -->
+            <inertia ixx="0.01" ixy="0.0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+        <!-- Visual properties of the lidar -->
+        <visual>
+            <geometry>
+                <!-- The lidar is represented as a cylinder with the specified radius and length -->
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+            <material name="white">
+                <!-- Set the color of the lidar to white -->
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <!-- Collision properties of the lidar -->
+        <collision>
+            <geometry>
+                <!-- The collision shape is a box with the specified dimensions -->
+                <box size="0.1 0.1 0.1"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Define the joint for the lidar -->
+    <joint name="lidar_joint" type="fixed">
+        <!-- Origin of the joint in relation to the parent link (base) -->
+        <origin xyz="-0.285 0 0.075" rpy="0 0.0 1.57"/>
+        <!-- The parent link of this joint -->
+        <parent link="base"/>
+        <!-- The child link of this joint -->
+        <child link="lidar"/>
+        <!-- The axis of rotation for the joint -->
+        <axis xyz="0.0 0.0 1.0"/>
+    </joint>
+
+    <!-- Define Gazebo-specific properties for the base link -->
+    <gazebo reference="base">
+        <!-- Set the material of the base link in Gazebo -->
+        <material>Gazebo/WhiteGlow</material>
+    </gazebo>
+    
+    <!-- Define Gazebo-specific properties for the front left wheel link -->
+    <gazebo reference="wheel_front_left_link">
+        <!-- Set the material of the front left wheel link in Gazebo -->
+        <material>Gazebo/SkyBlue</material>
+    </gazebo>
+    
+    <!-- Define Gazebo-specific properties for the front right wheel link -->
+    <gazebo reference="wheel_front_right_link">
+        <!-- Set the material of the front right wheel link in Gazebo -->
+        <material>Gazebo/SkyBlue</material>
+    </gazebo>
+    
+    <!-- Define Gazebo-specific properties for the rear left wheel link -->
+    <gazebo reference="wheel_rear_left_link">
+        <!-- Set the material of the rear left wheel link in Gazebo -->
+        <material>Gazebo/SkyBlue</material>
+    </gazebo>
+    
+    <!-- Define Gazebo-specific properties for the rear right wheel link -->
+    <gazebo reference="wheel_rear_right_link">
+        <!-- Set the material of the rear right wheel link in Gazebo -->
+        <material>Gazebo/SkyBlue</material>
+    </gazebo>
+    
+    <!-- Define Gazebo-specific properties for the lidar -->
+    <gazebo reference="lidar">
+        <!-- Set the material of the lidar in Gazebo -->
+        <material>Gazebo/Blue</material>
+    </gazebo>
+    
+    <!-- Define Gazebo-specific properties for the camera -->
+    <gazebo reference="camera">
+        <!-- Set the material of the camera in Gazebo -->
+        <material>Gazebo/Red</material>
+    </gazebo>
+    
+    <!-- Define the Gazebo plugin for four-wheel drive control -->
+    <gazebo>
+        <plugin filename="libgazebo_ros_diff_drive.so" name="gazebo_base_controller">
+            <!-- Odometry frame for the plugin -->
+            <odometry_frame>odom</odometry_frame>
+            <!-- Command topic for velocity commands -->
+            <commandTopic>cmd_vel</commandTopic>
+            <!-- Publish odometry data -->
+            <publish_odom>true</publish_odom>
+            <!-- Publish odometry transform -->
+            <publish_odom_tf>true</publish_odom_tf>
+            <!-- Update rate for the plugin -->
+            <update_rate>15.0</update_rate>
+            <!-- Left wheel joint names -->
+             <num_wheel_pairs>2</num_wheel_pairs>
+            <left_joint>wheel_front_left_joint</left_joint>
+            <left_joint>wheel_rear_left_joint</left_joint>
+            <!-- Right wheel joint names -->
+            <right_joint>wheel_front_right_joint</right_joint>
+            <right_joint>wheel_rear_right_joint</right_joint>
+            <!-- Wheel separation distance -->
+            <wheel_separation>0.5</wheel_separation>
+            <!-- Wheel diameter -->
+            <wheel_diameter>0.3</wheel_diameter>
+            <!-- Maximum wheel acceleration -->
+            <max_wheel_acceleration>0.7</max_wheel_acceleration>
+            <!-- Maximum wheel torque -->
+            <max_wheel_torque>8</max_wheel_torque>
+            <!-- Base frame of the robot -->
+            <robotBaseFrame>base</robotBaseFrame>
+        </plugin>
+    </gazebo>
+    
+    <!-- Define the Gazebo plugin for the camera -->
+    <gazebo reference="camera">
+        <!-- Define the camera sensor -->
+        <sensor type="camera" name="camera1">
+            <!-- Visualize the camera output in Gazebo -->
+            <visualize>true</visualize>
+            <!-- Update rate for the camera sensor -->
+            <update_rate>30.0</update_rate>
+            <camera name="head">
+                <!-- Horizontal field of view for the camera -->
+                <horizontal_fov>1.3962634</horizontal_fov>
+                <image>
+                    <!-- Image width in pixels -->
+                    <width>800</width>
+                    <!-- Image height in pixels -->
+                    <height>800</height>
+                    <!-- Image format -->
+                    <format>R8G8B8</format>
+                </image>
+                <clip>
+                    <!-- Near clipping distance -->
+                    <near>0.02</near>
+                    <!-- Far clipping distance -->
+                    <far>300</far>
+                </clip>
+            </camera>
+            <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+                <!-- Always keep the camera on -->
+                <alwaysOn>true</alwaysOn>
+                <!-- Update rate for the camera controller -->
+                <updateRate>60.0</updateRate>
+                <!-- Camera name for the controller -->
+                <cameraName>/camera1</cameraName>
+                <!-- Image topic name -->
+                <imageTopicName>image_raw</imageTopicName>
+                <!-- Camera info topic name -->
+                <cameraInfoTopicName>info_camera</cameraInfoTopicName>
+                <!-- Frame name for the camera -->
+                <frameName>camera</frameName>
+                <!-- Baseline for stereo camera setup (not used here) -->
+                <hackBaseline>0.07</hackBaseline>
+            </plugin>
+        </sensor>
+    </gazebo>
+    
+    <!-- Define the Gazebo plugin for the lidar -->
+    <gazebo reference="lidar">
+        <!-- Define the lidar sensor -->
+        <sensor name="lidar" type="ray">
+            <!-- Visualize the lidar output in Gazebo -->
+            <visualize>true</visualize>
+            <!-- Update rate for the lidar sensor -->
+            <update_rate>12.0</update_rate>
+            <plugin filename="libgazebo_ros_ray_sensor.so" name="gazebo_lidar">
+                <!-- Output type for the lidar sensor -->
+                <output_type>sensor_msgs/LaserScan</output_type>
+                <!-- Frame name for the lidar sensor -->
+                <frame_name>lidar</frame_name>
+            </plugin>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <!-- Number of samples for the lidar scan -->
+                        <samples>360</samples>
+                        <!-- Resolution of the lidar scan -->
+                        <resolution>1</resolution>
+                        <!-- Minimum angle for the lidar scan -->
+                        <min_angle>0.00</min_angle>
+                        <!-- Maximum angle for the lidar scan -->
+                        <max_angle>3.14</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <!-- Minimum range for the lidar sensor -->
+                    <min>0.120</min>
+                    <!-- Maximum range for the lidar sensor -->
+                    <max>3.5</max>
+                    <!-- Resolution of the lidar range -->
+                    <resolution>0.015</resolution>
+                </range>
+            </ray>
+        </sensor>
+    </gazebo>
+</robot>    

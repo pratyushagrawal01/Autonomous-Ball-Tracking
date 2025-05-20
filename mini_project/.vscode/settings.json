@@ -1,0 +1,26 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/alakh/ros2_ws/install/turtlebot3_gazebo/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/turtle_control/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/robot_arm_urdf/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/my_package/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/manipulator/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/lab6/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/lab4/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/ball_tracker/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/alakh/ros2_ws/install/turtlebot3_gazebo/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/turtle_control/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/robot_arm_urdf/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/my_package/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/manipulator/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/lab6/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/lab4/lib/python3.10/site-packages",
+        "/home/alakh/ros2_ws/install/ball_tracker/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

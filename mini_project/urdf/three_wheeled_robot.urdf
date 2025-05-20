@@ -1,0 +1,249 @@
+<?xml version="1.0" ?>
+<!-- Define the robot model and name it "three_wheeled_robot" -->
+<robot name="three_wheeled_robot">
+
+    <!-- Define the base link of the robot -->
+    <link name="base">
+        <!-- Visual properties of the base link -->
+        <visual>
+            <geometry>
+                <!-- The base is represented as a box with the specified dimensions -->
+                <box size="0.75 0.4 0.1"/>
+            </geometry>
+            <material name="gray">
+                <!-- Set the color of the base to gray -->
+                <color rgba=".2 .2 .2 1" />
+            </material>
+        </visual>
+        <!-- Inertial properties of the base link -->
+        <inertial>
+            <!-- Mass of the base link -->
+            <mass value="1" />
+            <!-- Inertia tensor of the base link -->
+            <inertia ixx="0.01" ixy="0.0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+        
+        <!-- Collision properties of the base link -->
+        <collision>
+            <geometry>
+                <!-- The collision shape is the same as the visual shape -->
+                <box size="0.75 0.4 0.1"/>
+            </geometry>
+        </collision>
+    </link>
+
+     
+    <!-- Define the right wheel link of the robot -->
+    <link name="wheel_right_link">
+        <!-- Inertial properties of the right wheel -->
+        <inertial>
+            <!-- Mass of the right wheel -->
+            <mass value="2" />
+            <!-- Inertia tensor of the right wheel -->
+            <inertia ixx="0.01" ixy="0.0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+     
+        <!-- Visual properties of the right wheel -->
+        <visual>
+            <geometry>
+                <!-- The right wheel is represented as a cylinder with the specified radius and length -->
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <material name="white">
+                <!-- Set the color of the right wheel to white -->
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <!-- Collision properties of the right wheel -->
+        <collision>
+            <geometry>
+                <!-- The collision shape is the same as the visual shape -->
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <contact_coefficients mu="1" kp="1e+13" kd="1.0"/>
+        </collision>
+    </link>
+
+
+       
+    <!-- Define the joint for the right wheel -->
+    <joint name="wheel_right_joint" type="continuous">
+        <!-- Origin of the joint in relation to the parent link (base) -->
+        <origin xyz="0.2 0.25 0.0" rpy="1.57 0.0 0.0"/>
+        <!-- The parent link of this joint -->
+        <parent link="base"/>
+        <!-- The child link of this joint -->
+        <child link="wheel_right_link"/>
+        <!-- The axis of rotation for the joint -->
+        <axis xyz="0.0 0.0 1.0"/>
+    </joint>
+
+    <!-- Define the left wheel link of the robot -->
+    <link name="wheel_left_link">
+        <!-- Inertial properties of the left wheel -->
+        <inertial>
+            <!-- Mass of the left wheel -->
+            <mass value="2" />
+            <!-- Inertia tensor of the left wheel -->
+            <inertia ixx="0.01" ixy="0.0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+        <!-- Visual properties of the left wheel -->
+        <visual>
+            <geometry>
+                <!-- The left wheel is represented as a cylinder with the specified radius and length -->
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <material name="white">
+                <!-- Set the color of the left wheel to white -->
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <!-- Collision properties of the left wheel -->
+        <collision>
+            <geometry>
+                <!-- The collision shape is the same as the visual shape -->
+                <cylinder radius="0.15" length="0.1"/>
+            </geometry>
+            <contact_coefficients mu="1" kp="1e+13" kd="1.0"/>
+        </collision>
+    </link>
+
+    <!-- Define the joint for the left wheel -->
+    <joint name="wheel_left_joint" type="continuous">
+        <!-- Origin of the joint in relation to the parent link (base) -->
+        <origin xyz="0.2 -0.25 0.0" rpy="1.57 0.0 0.0"/>
+        <!-- The parent link of this joint -->
+        <parent link="base"/>
+        <!-- The child link of this joint -->
+        <child link="wheel_left_link"/>
+        <!-- The axis of rotation for the joint -->
+        <axis xyz="0.0 0.0 1.0"/>
+    </joint>
+
+    <!-- Define the caster link of the robot -->
+    <link name="caster">
+        <!-- Inertial properties of the caster -->
+        <inertial>
+            <!-- Mass of the caster -->
+            <mass value="1" />
+            <!-- Inertia tensor of the caster -->
+            <inertia ixx="0.01" ixy="0.0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+        <!-- Visual properties of the caster -->
+        <visual>
+            <geometry>
+                <!-- The caster is represented as a sphere with the specified radius -->
+                <sphere radius=".08" />
+            </geometry>
+            <material name="white" />
+        </visual>
+        <!-- Collision properties of the caster -->
+        <collision>
+            <origin/>
+            <geometry>
+                <!-- The collision shape is the same as the visual shape -->
+                <sphere radius=".08" />
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Define the joint for the caster -->
+    <joint name="caster_joint" type="continuous">
+        <!-- Origin of the joint in relation to the parent link (base) -->
+        <origin xyz="-0.3 0.0 -0.07" rpy="0.0 0.0 0.0"/>
+        <axis xyz="0 0 1" />
+        <!-- The parent link of this joint -->
+        <parent link="base"/>
+        <!-- The child link of this joint -->
+        <child link="caster"/>
+    </joint>
+
+    <!-- Define the camera link of the robot -->
+    <link name="camera">
+        <!-- Inertial properties of the camera -->
+        <inertial>
+            <!-- Mass of the camera -->
+            <mass value="0.1" />
+            <!-- Inertia tensor of the camera -->
+            <inertia ixx="0.01" ixy="0.0" ixz="0" iyy="0.01" iyz="0" izz="0.01" />
+        </inertial>
+        <!-- Visual properties of the camera -->
+        <visual>
+            <geometry>
+                <!-- The camera is represented as a box with the specified dimensions -->
+                <box size="0.1 0.1 0.05"/>
+            </geometry>
+            <material name="white">
+                <!-- Set the color of the camera to white -->
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+        <!-- Collision properties of the camera -->
+        <collision>
+            <geometry>
+                <!-- The collision shape is the same as the visual shape -->
+                <box size="0.1 0.1 0.05"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Define the joint for the camera -->
+    <joint name="camera_joint" type="fixed">
+        <!-- Origin of the joint in relation to the parent link (base) -->
+        <origin xyz="-0.35 0 0.01" rpy="0 0.0 3.14"/>
+        <!-- The parent link of this joint -->
+        <parent link="base"/>
+        <!-- The child link of this joint -->
+        <child link="camera"/>
+        <!-- The axis of rotation for the joint -->
+        <axis xyz="0.0 0.0 1.0"/>
+    </joint>
+
+    <!-- Define Gazebo-specific properties for the base link -->
+    <gazebo reference="base">
+        <!-- Set the material of the base link in Gazebo -->
+        <material>Gazebo/WhiteGlow</material>
+    </gazebo>
+
+    <!-- Define Gazebo-specific properties for the left wheel link -->
+    <gazebo reference="wheel_left_link">
+        <!-- Set the material of the left wheel link in Gazebo -->
+        <material>Gazebo/SkyBlue</material>
+    </gazebo>
+
+    <!-- Define Gazebo-specific properties for the right wheel link -->
+    <gazebo reference="wheel_right_link">
+        <!-- Set the material of the right wheel link in Gazebo -->
+        <material>Gazebo/SkyBlue</material>
+    </gazebo>
+
+    <!-- Define Gazebo-specific properties for the caster link -->
+    <gazebo reference="caster">
+        <!-- Set the material of the caster link in Gazebo -->
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
+    <!-- Define Gazebo-specific properties for the camera link -->
+    <gazebo reference="camera">
+        <!-- Set the material of the camera link in Gazebo -->
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <!-- Differential Drive Plugin -->
+    <gazebo>
+        <plugin filename="libgazebo_ros_diff_drive.so" name="gazebo_base_controller">
+            <odometry_frame>odom</odometry_frame>
+            <commandTopic>cmd_vel</commandTopic>
+            <publish_odom>true</publish_odom>
+            <publish_odom_tf>true</publish_odom_tf>
+            <update_rate>15.0</update_rate>
+            <left_joint>wheel_left_joint</left_joint>
+            <right_joint>wheel_right_joint</right_joint>
+            <wheel_separation>0.5</wheel_separation>
+            <wheel_diameter>0.3</wheel_diameter>
+            <max_wheel_acceleration>0.7</max_wheel_acceleration>
+            <max_wheel_torque>8</max_wheel_torque>
+        </plugin>
+    </gazebo>
+
+</robot>
