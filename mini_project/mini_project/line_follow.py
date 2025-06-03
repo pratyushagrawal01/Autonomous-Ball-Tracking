@@ -27,7 +27,7 @@ class BallFollower(Node):
     def send_cmd_vel(self):
         # Debugging output
         print(f'Empty: {self.empty}, Error: {self.error}, Radius: {self.radius}')  
-        
+
         if self.empty:
             self.velocity.linear.x = 0.0
             self.velocity.angular.z = 0.5
@@ -36,7 +36,6 @@ class BallFollower(Node):
             # Proportional control for angular velocity based on error
             Kp = 0.009  # Proportional gain for angular velocity (adjust this value)
             self.velocity.angular.z = Kp * self.error
-            
             # Adjust linear velocity based on how close the ball is (radius)
             if self.radius > 50:  # Ball is too close
                 self.velocity.linear.x = 0.0  # Stop if too close to the ball
@@ -45,7 +44,8 @@ class BallFollower(Node):
                 self.velocity.linear.x = 0.8  # Slow down as the ball is centered
                 self.action = "Go Straight"
             else:
-                self.velocity.linear.x = 0.7  # Move forward at a slower speed
+                self.velocity.linear.x = 0.7
+                self.velocity.angular.z = 0.1  # Move forward at a slower speed
                 self.action = "Moving"
 
         # Publish velocity
@@ -91,25 +91,39 @@ class BallFollower(Node):
             # Only proceed if the radius is large enough to be a valid ball
             if radius > 1:
                 center = (int(x), int(y))
-                frame_mid = center[0]  # x-coordinate of the ball's center
-                mid_point = frame.shape[1] // 2  # Midpoint of the image width
+                ball_mid = center[0]  # x-coordinate of the ball's center
+                frame_mid_point = frame.shape[1] // 2  # Midpoint of the image width
 
                 # Draw the detected ball
                 cv2.circle(frame, center, int(radius), (0, 255, 255), 2)
                 
                 # Calculate the error between the ball's center and the image midpoint
-                self.error = mid_point - frame_mid
+                self.error = frame_mid_point - ball_mid
                 self.radius = radius  # Update radius to determine closeness to ball
                 self.empty = False
+                error = self.error
+                if self.error < -2:
+                    action = "Go right"
+                elif self.error > 1:
+                    action = "Go left"
+                elif self.radius < 50:
+                    action = "straight"
+                else:
+                    action = "stop"
+                    
             else:
                 print('Ball radius too small.')
                 self.empty = True
+                action = "stop"
+                error = 0
         else:
             print('No ball detected.')
             self.empty = True
-
+            action = "spot rotation"
+            error = 0
         # Display the frame with ball tracking for debugging
-        cv2.imshow('Ball Tracking', frame)
+        f_frame = cv2.putText(frame, f'Eror: {error} | Action: {action}', (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 2, cv2.LINE_AA)
+        cv2.imshow('Ball Tracking', f_frame)
         cv2.waitKey(1)  # Use a small wait time to allow OpenCV to process the window
 
 def main(args=None):
