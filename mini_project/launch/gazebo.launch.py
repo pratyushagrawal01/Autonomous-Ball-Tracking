@@ -7,7 +7,7 @@ from launch_ros.actions import Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
-  urdf = '/home/alakh/ros2_ws/src/mini_project/urdf/four_wheeled_robot.urdf'
+  urdf = '/home/pratyush/ros2_ws/src/mini_project/urdf/car.urdf'
   return LaunchDescription([
     #   publishes TF for links of the robot without joints
         Node(
@@ -34,4 +34,3 @@ def generate_launch_description():
             output='screen',
             arguments=["-topic", "/robot_description", "-entity", "mini_project"])
   ])
-
