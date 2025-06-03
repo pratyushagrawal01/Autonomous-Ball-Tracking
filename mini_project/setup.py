@@ -26,9 +26,7 @@ setup(
     entry_points={
         'console_scripts': [
             'capture = mini_project.capture_image:main',
-            'line = mini_project.line_follow:main',
-            'line1 = mini_project.ball_follower:main',
-            'ball = mini_project.line_follow_og:main'
+            'line = mini_project.line_follow:main'
         ],
     },
 )
